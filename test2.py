@@ -1,0 +1,1 @@
+string = "hahahaahah %s hoi hoi" %
