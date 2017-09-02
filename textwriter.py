@@ -3,11 +3,11 @@ def make(name, balance):
     balance_float = float(balance.replace(",",".").replace("€", "").replace(" ", ""))
     print(balance_float)
     if balance_float < 0.0:
-        personal_message = "Op het moment is je saldo negatief, dat betekend dat je de bar geld verschuildigd bent.<br>" \
-                           "We willen graag dat men een positief saldo heeft, zodat we geen lening uitgeven" \
-                           "We verzoeken je zo snel mogelijk het verschuildigde bedrag naar ons over te maken."
-    elif balance_float > 0.0:
-        personal_message = "Je saldo is op dit moment positief, dat betekend dat je met een gerust hart nog gebruik " \
+        personal_message = "Op het moment is je saldo negatief, dat betekent dat je de bar geld verschuildigd bent.<br>" \
+                           "We willen graag dat men een positief saldo heeft, zodat we geen leningen uitgeven. " \
+                           "We verzoeken je zo snel mogelijk het verschuldigde bedrag naar ons over te maken. "
+    elif balance_float >= 0.0:
+        personal_message = "Je saldo is op dit moment positief, dat betekent dat je met een gerust hart nog gebruik " \
                            "kunt maken van de bar, proost!"
 
     html = """\
@@ -15,8 +15,8 @@ def make(name, balance):
               <head></head>
               <body>
                 <p>Beste {name},<br><br>
-                Turfjes zijn weer verwerkt en je saldo is geupdate!<br>
-                Op het moment is je saldo: <mark style="background-color:blue"><b>{balance}</b></mark><br><br>
+                Turfjes zijn weer verwerkt en je saldo is geüpdatet!<br>
+                Op het moment is je saldo: <b>{balance}</b><br><br>
                 {personal_message}<br><br>
                 
                 Het rekeningnummer voor het opwaarderen is: NL92 INGB 0004806266 t.n.v. 'M Jeremic en/of Q van Dijk<br>

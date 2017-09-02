@@ -2,6 +2,7 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import mail
 from prompter import yesno
+import time
 
 
 def getdata(sheet, data):
@@ -59,3 +60,4 @@ if yesno("Send e-mails? Make sure printed data above is correct!"):
     for i in range(0, len(data)):
         print("naam:", data[i][0])
         mail.main(data[i][0], data[i][1], data[i][2])  # Function that handles mailing
+        time.sleep(2)
