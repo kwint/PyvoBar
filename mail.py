@@ -11,8 +11,6 @@ from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
 
-
-
 try:
     import argparse
 
@@ -108,7 +106,7 @@ def main(name, mail, balance):
     of the user's Gmail account.
     """
     html = textwriter.make(name, balance)
-    credentials = get_credentials()
+    credentials = get_credentials()  # TODO: only run this function once
     http = credentials.authorize(httplib2.Http())
     service = discovery.build('gmail', 'v1', http=http)
 
@@ -116,6 +114,7 @@ def main(name, mail, balance):
     send = send_message(service, "me", message)
     print(send)
     print("done")
+
 
 if __name__ == '__main__':
     main()
