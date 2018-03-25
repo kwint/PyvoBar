@@ -25,7 +25,7 @@ def fillempty(row):
 scope = ['https://spreadsheets.google.com/feeds']
 creds = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)
 client = gspread.authorize(creds)
-url = "https://docs.google.com/spreadsheets/d/1j8LReHcC1wH9oi7KrfvPQmfok31h7aNo8d6glpDI9oM/edit#gid=0"
+url = "https://docs.google.com/spreadsheets/d/1bGjdq8_Qgxud0KFb-3lAM1_VwCivCXj5vhM8XeWuWyY/edit#gid=0"
 data = np.empty((0))
 
 # Find a workbook by name and open the right sheet
