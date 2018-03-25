@@ -36,6 +36,7 @@ def get_credentials():
     Returns:
         Credentials, the obtained credential.
     """
+    #TODO: store creds in project root
     home_dir = os.path.expanduser('~')
     credential_dir = os.path.join(home_dir, '.credentials')
     if not os.path.exists(credential_dir):
@@ -54,6 +55,14 @@ def get_credentials():
             credentials = tools.run(flow, store)
         print('Storing credentials to ' + credential_path)
     return credentials
+
+
+def init():
+    credentials = get_credentials()
+    http = credentials.authorize(httplib2.Http())
+    service = discovery.build('gmail', 'v1', http=http)
+    print("Mail succesfully initialized")
+    return service
 
 
 def create_message(sender, to, subject, message_text):
@@ -99,21 +108,19 @@ def send_message(service, user_id, message):
     return message
 
 
-def main(name, mail, balance):
+def main(service, data):
     """Shows basic usage of the Gmail API.
 
     Creates a Gmail API service object and outputs a list of label names
     of the user's Gmail account.
     """
-    html = textwriter.make(name, balance)
-    credentials = get_credentials()  # TODO: only run this function once
-    http = credentials.authorize(httplib2.Http())
-    service = discovery.build('gmail', 'v1', http=http)
-
-    message = create_message(sendadress, str(mail), subject, html)
+    html = textwriter.make(data)
+    message = create_message(sendadress, str(data[1]), subject, html)
     send = send_message(service, "me", message)
     print(send)
     print("done")
+
+
 
 
 if __name__ == '__main__':
