@@ -59,5 +59,10 @@ print(data)
 if yesno("Send e-mails? Make sure printed data above is correct!"):
     for i in range(0, len(data)):
         print("naam:", data[i][0])
-        mail.main(data[i][0], data[i][1], data[i][2])  # Function that handles mailing
+        print("data i 2:", data[i][2])
+        if data[i][2] != "€ 0.00":
+            print("lets mail")
+            mail.main(data[i][0], data[i][1], data[i][2])  # Function that handles mailing
+        else:
+            print("Didn't send email to user since balance is 0")
         time.sleep(2)
