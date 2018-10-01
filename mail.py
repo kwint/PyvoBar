@@ -36,13 +36,8 @@ def get_credentials():
     Returns:
         Credentials, the obtained credential.
     """
-    #TODO: store creds in project root
-    home_dir = os.path.expanduser('~')
-    credential_dir = os.path.join(home_dir, '.credentials')
-    if not os.path.exists(credential_dir):
-        os.makedirs(credential_dir)
-    credential_path = os.path.join(credential_dir,
-                                   'gmail-python-quickstart.json')
+
+    credential_path = 'gmail-python-quickstart.json'
 
     store = Storage(credential_path)
     credentials = store.get()
@@ -123,5 +118,3 @@ def main(service, data):
 
 
 
-if __name__ == '__main__':
-    main()
