@@ -10,23 +10,24 @@ import time
 
 def newtoold(sheet):
     list_of_names = sheet.col_values(1)
-    newSaldo = sheet.range("J3:J" + str(len(list_of_names)))
+    newSaldo = sheet.range("I3:I" + str(len(list_of_names)))
     oldSaldo = sheet.range("C3:C" + str(len(list_of_names)))
 
     row = 0
     for cell in oldSaldo:
-        cell.value = newSaldo[row].value
+        cell.value = float(newSaldo[row].value.replace("'", "").replace("€ ", ""))
+        print(cell.value)
         row += 1
 
     sheet.update_cells(oldSaldo)
 
-    cell_list = sheet.range('D3:G' + str(len(list_of_names)))
+    cell_list = sheet.range('D3:F' + str(len(list_of_names)))
     for cell in cell_list:
         cell.value = ''
 
     sheet.update_cells(cell_list)
 
-    cell_list = sheet.range('I3:I' + str(len(list_of_names)))
+    cell_list = sheet.range('H3:H' + str(len(list_of_names)))
     for cell in cell_list:
         cell.value = ''
 
@@ -36,9 +37,10 @@ def newtoold(sheet):
 scope = ['https://spreadsheets.google.com/feeds']
 creds = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)
 client = gspread.authorize(creds)
-filename = "Barlijst"
+url = "https://docs.google.com/spreadsheets/d/1bGjdq8_Qgxud0KFb-3lAM1_VwCivCXj5vhM8XeWuWyY/edit#gid=0"
 
-spreadsheet = client.open(filename)
+# Find a workbook by name and open the right sheet
+spreadsheet = client.open_by_url(url)
 
 repeat = True
 while repeat:

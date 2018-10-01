@@ -1,7 +1,7 @@
 def make(data):
     balance_float = float(data[8].replace(",", ".").replace("€", "").replace(" ", ""))
     print(balance_float)
-    if balance_float < -10.0:
+    if balance_float < -50.0:
         personal_message = "Op het moment is je barsaldo <b>erg</b> laag. Zoals je misschien weet is de Pivobar geen bank, "\
                            "we delen dus geen leningen uit. Hierbij het bijzonder vriendelijke verzoek om "\
                             "je barsaldo op te waarderen naar een positief bedrag dat ook je kosten voor aankomende maand dekt"
@@ -9,7 +9,10 @@ def make(data):
         personal_message = "Op het moment is je saldo negatief, dat betekent dat je de bar geld verschuldigd bent.<br>" \
                            "We willen graag dat men een positief saldo heeft, zodat we geen leningen uitgeven. " \
                            "We verzoeken je zo snel mogelijk het verschuldigde bedrag naar ons over te maken. "
-    elif balance_float >= 0.0:
+    elif balance_float < 10.0:
+        personal_message = "Je saldo is op dit moment positief, maar wel laag. Zorg je er voor dat je ook voor " \
+                           "komende maand genoeg saldo hebt? "
+    elif balance_float >= 10.0:
         personal_message = "Je saldo is op dit moment positief, dat betekent dat je met een gerust hart nog gebruik " \
                            "kunt maken van de bar, proost!"
 

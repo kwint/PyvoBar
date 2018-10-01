@@ -56,9 +56,10 @@ if yesno("Send e-mails? Make sure printed data above is correct! "):
 
     for i in range(0, len(data)):
         print(data[i][0])
-        if data[i][8] != "€ 0.00":
+        if data[i][8] != "€ 0.00": # if balance = 0, dont sent email
             print("lets mail")
             mail.main(service, fillempty(data[i]))  # Function that handles mailing
+            time.sleep(2) # otherwise gmail thinks Im spamming and won't send emails
         else:
             print("Didn't send email to user since balance is 0")
-        time.sleep(2)
+
