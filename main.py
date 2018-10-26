@@ -5,18 +5,20 @@ from prompter import yesno
 import time
 import numpy as np
 
+new_balance_column = 9
+last_column = new_balance_column
 
 def getdata(sheet, data):
     last_row = sheet.row_count - 1
 
-    data_rough = sheet.range(3, 1, last_row, 9)
+    data_rough = sheet.range(3, 1, last_row, last_column + 1) # +1 because G start counting at 1
     for cell in data_rough:
         data = np.append(data, cell.value)
     return data
 
 
 def fillempty(row):
-    for i in range(3, 8):
+    for i in range(3, last_column):
         if row[i] == "":
             row[i] = "-"
     return row
@@ -25,7 +27,8 @@ def fillempty(row):
 scope = ['https://spreadsheets.google.com/feeds']
 creds = ServiceAccountCredentials.from_json_keyfile_name('credentials.json', scope)
 client = gspread.authorize(creds)
-url = "https://docs.google.com/spreadsheets/d/1bGjdq8_Qgxud0KFb-3lAM1_VwCivCXj5vhM8XeWuWyY/edit#gid=0"
+url = "https://docs.google.com/spreadsheets/d/1bGjdq8_Qgxud0KFb-3lAM1_VwCivCXj5vhM8XeWuWyY/edit#gid=0" # production
+# url = "https://docs.google.com/spreadsheets/d/12wdambiIM6ES9CMLf7pA_TdKFpMJYlzZGuD7sTpEZ9s/edit#gid=1865050320" #dev
 data = np.empty((0))
 
 # Find a workbook by name and open the right sheet
@@ -46,7 +49,8 @@ while repeat:
         data = getdata(sheet, data)
         repeat = False
 
-data = np.reshape(data, (-1, 9))
+print(data)
+data = np.reshape(data, (-1, 10))
 # Send e-mails after conformation form the user
 print(data)
 
@@ -56,7 +60,7 @@ if yesno("Send e-mails? Make sure printed data above is correct! "):
 
     for i in range(0, len(data)):
         print(data[i][0])
-        if data[i][8] != "€ 0.00": # if balance = 0, dont sent email
+        if data[i][new_balance_column] != "€ 0.00": # if balance = 0, dont sent email
             print("lets mail")
             mail.main(service, fillempty(data[i]))  # Function that handles mailing
             time.sleep(2) # otherwise gmail thinks Im spamming and won't send emails

@@ -1,6 +1,15 @@
 def make(data):
-    balance_float = float(data[8].replace(",", ".").replace("€", "").replace(" ", ""))
+    balance_float = float(data[9].replace(",", ".").replace("€", "").replace(" ", ""))
     print(balance_float)
+
+    if data[7] == "-" or data[7] == "€ 0.00" or data[7] == "":
+        other_costs = ""
+    else:
+        other_costs = "<tr> "\
+            "<td>Overige Transacties</td>"\
+            "<td>{pay}</td>"\
+        "</tr>".format(pay=data[7])
+
     if balance_float < -50.0:
         personal_message = "Op het moment is je barsaldo <b>erg</b> laag. Zoals je misschien weet is de Pivobar geen bank, "\
                            "we delen dus geen leningen uit. Hierbij het bijzonder vriendelijke verzoek om "\
@@ -28,7 +37,7 @@ def make(data):
                 <p>Beste {name},<br><br>
                                 
                 De turfjes zijn weer verwerkt en je saldo is geüpdatet!<br>
-                                             
+                
                 Op het moment is je saldo: <b>{balance}</b><br><br>
                 {personal_message}<br><br>
                               
@@ -63,6 +72,7 @@ def make(data):
                         <td>Gestort</td>
                         <td>{pay}</td>                    
                       </tr>
+                      {other_costs}
                       <tr>
                         <td>Huidig Saldo</td>
                         <td><b>{balance}</b></td>                    
@@ -76,6 +86,6 @@ def make(data):
                 De Pivo's
               </body>
             </html>
-            """.format(name=data[0], balance=data[8], balance_old=data[2], turf_1=data[3], turf_2=data[4],
-                       turf_3=data[5], cost=data[6], pay=data[7], personal_message=personal_message)
+            """.format(name=data[0], balance=data[9], balance_old=data[2], turf_1=data[3], turf_2=data[4],
+                       turf_3=data[5], cost=data[6], pay=data[8], personal_message=personal_message, other_costs=other_costs)
     return html
