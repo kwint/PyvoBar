@@ -10,7 +10,7 @@ import time
 
 def newtoold(sheet):
     list_of_names = sheet.col_values(1)
-    newSaldo = sheet.range("I3:I" + str(len(list_of_names)))
+    newSaldo = sheet.range("J3:J" + str(len(list_of_names)))
     oldSaldo = sheet.range("C3:C" + str(len(list_of_names)))
 
     row = 0
@@ -27,7 +27,7 @@ def newtoold(sheet):
 
     sheet.update_cells(cell_list)
 
-    cell_list = sheet.range('H3:H' + str(len(list_of_names)))
+    cell_list = sheet.range('H3:I' + str(len(list_of_names)))
     for cell in cell_list:
         cell.value = ''
 

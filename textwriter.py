@@ -41,7 +41,7 @@ def make(data):
                 Op het moment is je saldo: <b>{balance}</b><br><br>
                 {personal_message}<br><br>
                               
-                Het rekeningnummer voor het opwaarderen is: NL92 INGB 0004806266 t.n.v. 'M Jeremic en/of Q van Dijk. Als je geld overmaakt doe dit dan alsjeblieft onder vermelding van je naam.<br>
+                Het rekeningnummer voor het opwaarderen is: NL92 INGB 0004806266 t.n.v. 'Q van Dijk en/of B Kandhai. Als je geld overmaakt doe dit dan alsjeblieft onder vermelding van je naam.<br>
                 De digitale barlijst kan je <a href="https://drive.google.com/drive/folders/0B-xczYurTophWE0yRVFjWi1wNWM?usp=sharing">hier</a> vinden. Als je denkt dat we een foutje hebben 
                 gemaakt neem dan even contact op!<br><br>
                 
