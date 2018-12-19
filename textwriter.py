@@ -11,7 +11,7 @@ def make(data):
         "</tr>".format(pay=data[7])
 
     if balance_float < -50.0:
-        personal_message = "Op het moment is je barsaldo <b>erg</b> laag. Zoals je misschien weet is de Pivobar geen bank, "\
+        personal_message = "Op het moment is je saldo <i>bar</i> laag. Zoals je misschien weet is de Pivobar geen bank, "\
                            "we delen dus geen leningen uit. Hierbij het bijzonder vriendelijke verzoek om "\
                             "je barsaldo op te waarderen naar een positief bedrag dat ook je kosten voor aankomende maand dekt"
     elif balance_float < 0.0:
@@ -41,7 +41,7 @@ def make(data):
                 Op het moment is je saldo: <b>{balance}</b><br><br>
                 {personal_message}<br><br>
                               
-                Het rekeningnummer voor het opwaarderen is: NL92 INGB 0004806266 t.n.v. 'Q van Dijk en/of B Kandhai. Als je geld overmaakt doe dit dan alsjeblieft onder vermelding van je naam.<br>
+                Het rekeningnummer voor het opwaarderen is: NL92 INGB 0004806266 t.n.v. 'Q van Dijk en/of B Kandhai'. Als je geld overmaakt doe dit dan alsjeblieft onder vermelding van je naam.<br>
                 De digitale barlijst kan je <a href="https://drive.google.com/drive/folders/0B-xczYurTophWE0yRVFjWi1wNWM?usp=sharing">hier</a> vinden. Als je denkt dat we een foutje hebben 
                 gemaakt neem dan even contact op!<br><br>
                 
