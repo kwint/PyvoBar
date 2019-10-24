@@ -7,12 +7,14 @@ from prompter import yesno
 import time
 import numpy as np
 import argparse
-
+import pandas
 
 def getdata(sheet, data):
     last_row = sheet.row_count - 1
 
     data_rough = sheet.range(3, 1, last_row, last_column + 1) # +1 because G start counting at 1
+    # data_rough_panda = pandas.DataFrame(data_rough)
+    # print(data_rough_panda)
     for cell in data_rough:
         data = np.append(data, cell.value)
     return data
@@ -33,7 +35,7 @@ def fillempty(row):
 #
 # # Set Dev or Prod sheet
 # if args.version == 'dev':
-#     url = "https://docs.google.com/spreadsheets/d/12wdambiIM6ES9CMLf7pA_TdKFpMJYlzZGuD7sTpEZ9s/edit#gid=1865050320"  # dev
+#url = "https://docs.google.com/spreadsheets/d/12wdambiIM6ES9CMLf7pA_TdKFpMJYlzZGuD7sTpEZ9s/edit#gid=1865050320"  # dev
 # elif args.version == 'prod':
 #     url = "https://docs.google.com/spreadsheets/d/1bGjdq8_Qgxud0KFb-3lAM1_VwCivCXj5vhM8XeWuWyY/edit#gid=0"  # production
 # else:
@@ -89,3 +91,9 @@ if yesno("Send e-mails? Make sure printed data above is correct! "):
         else:
             print("Didn't send email to user since balance is 0")
 
+
+data = pandas.DataFrame(data, columns=["name", "email", "balance_old", "turf1", "turf2", "turf3", "costs", "manual_transaction",
+                        "payed", "balance_new"])
+
+with open('df.json', 'w', encoding='utf-8') as file:
+    data.to_json(file, force_ascii=False)
