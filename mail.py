@@ -24,7 +24,7 @@ SCOPES = 'https://www.googleapis.com/auth/gmail.compose'
 CLIENT_SECRET_FILE = 'credentials_mail.json'
 APPLICATION_NAME = 'Pivobar'
 sendadress = "pivobar@demohicanen.nl"
-subject = "Barupdate"
+subject = "Barupdate!"
 
 
 def get_credentials():

@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import mail
@@ -22,20 +24,21 @@ def fillempty(row):
             row[i] = "-"
     return row
 
-# Input argmument parser
-parser = argparse.ArgumentParser(description='Send barupdates')
-# parser.add_argument('--dev', action='store_true')
-# parser.add_argument('--prod', action='store_true')
-parser.add_argument('version', choices=['dev', 'prod'], help='dev for testing, prod for the real thing')
-args = parser.parse_args()
-
-# Set Dev or Prod sheet
-if args.version == 'dev':
-    url = "https://docs.google.com/spreadsheets/d/12wdambiIM6ES9CMLf7pA_TdKFpMJYlzZGuD7sTpEZ9s/edit#gid=1865050320"  # dev
-elif args.version == 'prod':
-    url = "https://docs.google.com/spreadsheets/d/1bGjdq8_Qgxud0KFb-3lAM1_VwCivCXj5vhM8XeWuWyY/edit#gid=0"  # production
-else:
-    exit(1337)
+# # Input argmument parser
+# parser = argparse.ArgumentParser(description='Send barupdates')
+# # parser.add_argument('--dev', action='store_true')
+# # parser.add_argument('--prod', action='store_true')
+# parser.add_argument('version', choices=['dev', 'prod'], help='dev for testing, prod for the real thing')
+# args = parser.parse_args()
+#
+# # Set Dev or Prod sheet
+# if args.version == 'dev':
+#     url = "https://docs.google.com/spreadsheets/d/12wdambiIM6ES9CMLf7pA_TdKFpMJYlzZGuD7sTpEZ9s/edit#gid=1865050320"  # dev
+# elif args.version == 'prod':
+#     url = "https://docs.google.com/spreadsheets/d/1bGjdq8_Qgxud0KFb-3lAM1_VwCivCXj5vhM8XeWuWyY/edit#gid=0"  # production
+# else:
+#     exit(1337)
+url = "https://docs.google.com/spreadsheets/d/1bGjdq8_Qgxud0KFb-3lAM1_VwCivCXj5vhM8XeWuWyY/edit#gid=0"  # production
 
 # Set some const values
 new_balance_column = 9

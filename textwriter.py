@@ -35,7 +35,7 @@ def make(data):
               </head>
               <body>
                 <p>Beste {name},<br><br>
-                                
+                              
                 De turfjes zijn weer verwerkt en je saldo is geüpdatet!<br>
                 
                 Op het moment is je saldo: <b>{balance}</b><br><br>
