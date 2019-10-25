@@ -5,6 +5,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 import mail
 from prompter import yesno
 import time
+import datetime
 import numpy as np
 import argparse
 import pandas
@@ -92,8 +93,9 @@ if yesno("Send e-mails? Make sure printed data above is correct! "):
             print("Didn't send email to user since balance is 0")
 
 
+# Export data to JSON file
 data = pandas.DataFrame(data, columns=["name", "email", "balance_old", "turf1", "turf2", "turf3", "costs", "manual_transaction",
                         "payed", "balance_new"])
 
-with open('df.json', 'w', encoding='utf-8') as file:
-    data.to_json(file, force_ascii=False)
+with open('pyvobar_export_' + datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H-%M-%S') + ".json", 'w', encoding='utf-8') as file:
+    data.to_json(file, force_ascii=False, orient="records")
