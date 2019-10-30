@@ -20,7 +20,7 @@ def getdata(sheet, data):
 
 def fillempty(row):
     for i in range(3, last_column):
-        if row[i] == "":
+        if row[i] == "" or row[i] == "0":
             row[i] = "-"
     return row
 
