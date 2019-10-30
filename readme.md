@@ -9,3 +9,8 @@ Tested with python 3.5 but should work with all versions of python3
 Basically, you have to add a `credentials.json` to your project directory and share the sheet with Google API email address. 
 Make sure to change the file name at main.py line 32
 * E-mail works with Oauth2 and configures your email at first run. You only have to change the email address at mail.py line 28
+
+#### Troubleshooting
+`ModuleNotFoundError: No module named 'apiclient'`
+execute:
+`pip install --upgrade google-api-python-client`
