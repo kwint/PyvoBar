@@ -103,13 +103,17 @@ def send_message(service, user_id, message):
     return message
 
 
-def main(service, data):
+def main(service, data, barapp):
     """Shows basic usage of the Gmail API.
 
     Creates a Gmail API service object and outputs a list of label names
     of the user's Gmail account.
     """
-    html = textwriter.make(data)
+
+    if not barapp:
+        html = textwriter.make_full(data)
+    else:
+        html = textwriter.make_barapp(data)
     message = create_message(sendadress, str(data[1]), subject, html)
     send = send_message(service, "me", message)
     print(send)
